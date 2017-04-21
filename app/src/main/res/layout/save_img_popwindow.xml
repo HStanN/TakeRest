@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:background="@drawable/popup_background_mtrl_mult"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/save_img_to_local"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="@string/save_image"
+        android:gravity="center"
+        android:background="?attr/selectableItemBackground"
+        android:textSize="15sp"
+        android:textColor="@color/textPrimary"
+        android:padding="5dp"/>
+    <TextView
+        android:id="@+id/share_to_friends"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="@string/share_image"
+        android:gravity="center"
+        android:background="?attr/selectableItemBackground"
+        android:textSize="15sp"
+        android:textColor="@color/textPrimary"
+        android:padding="5dp"/>
+</LinearLayout>

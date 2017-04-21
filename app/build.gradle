@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        release {
+            keyAlias 'GoWeather'
+            keyPassword '123456'
+            storeFile file('D:/Android/androidProjects/GoWeather.jks')
+            storePassword '123456'
+        }
+    }
+    compileSdkVersion 24
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.hug.takerest"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "V.1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true    // Enable RS support
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:cardview-v7:24.2.1'
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:24.2.1'
+    //图片加载
+    compile 'com.facebook.fresco:fresco:1.2.0'
+    compile 'com.facebook.fresco:animated-gif:1.2.0'
+    //日志
+    compile 'com.orhanobut:logger:1.15'
+    //flowlayout
+    compile 'com.beltaief.flowlayout:flowlayout:0.4.0'
+    //butterknife
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    //retrofit和okhttp gson
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.google.code.gson:gson:2.3'
+    //rxjava
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+    //让Retrofit支持RxJava
+    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+
+    //一个快速高斯模糊view
+    compile 'com.github.mmin18:realtimeblurview:1.1.0'
+    //bottombar
+    compile 'com.roughike:bottom-bar:2.2.0'
+    //statusbar util
+    compile 'com.jaeger.statusbaruitl:library:1.3.6'
+    //photodraweeview
+    compile 'me.relex:photodraweeview:1.1.2'
+    compile 'com.amap.api:location:latest.integration'
+}

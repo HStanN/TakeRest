@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#90a4ae</color>
+    <color name="colorPrimaryDark">#78909c</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="textPrimary">#212121</color>
+    <color name="textSecondary">#757575</color>
+
+    <color name="progress_start">#21d1d7</color>
+    <color name="progress_center">#0ca1a6</color>
+    <color name="progress_end">#287fca</color>
+    <color name="dividerColor">#dbdbdb</color>
+    <color name="collect_number_color">#e93939</color>
+    <color name="rating_color">#f77417</color>
+    <color name="white">#ffffff</color>
+    <color name="little_dark">#c9c9c9</color>
+    <color name="divider_line">#d9d9d9</color>
+    <color name="alpha_white">#83282222</color>
+    <color name="half_transparent">#83616161</color>
+    <color name="half_black">#d2000000</color>
+
+    <color name="book_blue">#379cff</color>
+    <color name="meizi_pink">#e43973</color>
+    <color name="heart_red">#ef2e48</color>
+
+    <color name="datecolor">#21e787</color>
+    <color name="datebg">#3b3c3d</color>
+    <color name="scrollbg">#757779</color>
+
+    <color name="douban_green">#0d9b14</color>
+    <color name="gank_brown">#5D4037</color>
+
+    <color name="icon_color">#666666</color>
+    <color name="blue">#1296db</color>
+</resources>

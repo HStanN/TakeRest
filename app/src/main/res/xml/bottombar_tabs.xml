@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_movie"
+        icon="@drawable/ic_movie"
+        badgeBackgroundColor="#FF0000"
+        barColorWhenSelected="@color/colorPrimary"
+        badgeHidesWhenActive="true"
+        title="热映" />
+    <tab
+        id="@+id/tab_developer"
+        icon="@drawable/ic_developer"
+        badgeBackgroundColor="#FF0000"
+        barColorWhenSelected="@color/colorPrimary"
+        badgeHidesWhenActive="true"
+        title="干货" />
+    <tab
+        id="@+id/tab_girl"
+        icon="@drawable/ic_girl"
+        badgeBackgroundColor="#FF0000"
+        barColorWhenSelected="@color/colorPrimary"
+        badgeHidesWhenActive="true"
+        title="妹子" />
+
+    <tab
+        id="@+id/tab_book"
+        icon="@drawable/ic_dribbble"
+        barColorWhenSelected="@color/colorPrimary"
+        badgeBackgroundColor="#FF0000"
+        badgeHidesWhenActive="true"
+        title="dribbble" />
+</tabs>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.beltaief.flowlayout.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/flowlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:errorLayout="@layout/error_view"
+    app:emptyLayout="@layout/empty_layout"
+    android:orientation="vertical">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/gank_recyclerview"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        ></android.support.v7.widget.RecyclerView>
+</com.beltaief.flowlayout.FlowLayout>

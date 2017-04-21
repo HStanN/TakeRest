@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.beltaief.flowlayout.FlowLayout
+        android:id="@+id/flowlayout"
+        app:errorLayout="@layout/error_view"
+        app:emptyLayout="@layout/empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"></android.support.v7.widget.RecyclerView>
+    </com.beltaief.flowlayout.FlowLayout>
+</LinearLayout>

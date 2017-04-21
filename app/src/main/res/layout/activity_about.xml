@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/about_appbar_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginTop="140dp"
+            app:expandedTitleGravity="center"
+            app:expandedTitleTextAppearance="@style/expand_title_style"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/header_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/about_appbar_height"
+                    app:actualImageScaleType="centerCrop"
+                    />
+                <ImageView
+                    android:id="@+id/app_icon"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/version_name"
+                    android:text="123"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    />
+            </FrameLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_about" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/hstan_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/fab_margin"
+        android:elevation="10dp"
+        android:padding="2dp"
+        android:src="@mipmap/hstan_avator"
+        app:actualImageScaleType="centerCrop"
+        app:roundAsCircle="true"
+        android:background="@drawable/avator_round_shape"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        />
+
+</android.support.design.widget.CoordinatorLayout>
