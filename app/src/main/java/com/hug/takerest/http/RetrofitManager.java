@@ -106,8 +106,8 @@ public class RetrofitManager {
      *
      * @param type 请求数据类型
      *             (MOVIE_TYPE=1000:电影
-     *              GANK_TYPE =1001:gank
-     *              SHOT_TYPE =1002:dribbble shot
+     *             GANK_TYPE =1001:gank
+     *             SHOT_TYPE =1002:dribbble shot
      *             )
      */
     public void initRetrofit(Context context, int type) {
@@ -149,7 +149,7 @@ public class RetrofitManager {
     /**
      * 获取正在上映的电影
      *
-     * @param city  选择定位的城市
+     * @param city 选择定位的城市
      */
     public Disposable getOnShow(final String city, final OnRetrofitCallback onRetrofitCallback) {
         return movieAPI.OnShow(city)
@@ -157,8 +157,8 @@ public class RetrofitManager {
 //                .filter()  //可以用于过滤
 //                .map()     //可以用于对数据某项进行修改
 //                .toList()  //完成上述操作 重新整理成列表
-                .subscribeOn(Schedulers.io())            //设置事件触发在io线程
-                .observeOn(AndroidSchedulers.mainThread())//设置事件回调在主线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<MovieResponse>() {
                     @Override
                     public void accept(MovieResponse movieResponse) throws Exception {
@@ -183,17 +183,18 @@ public class RetrofitManager {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<MovieBasic>() {
-                    @Override
-                    public void accept(MovieBasic movieBasic) throws Exception {
-                        onRetrofitCallback.onResponse(movieBasic);
-                    }
-                }, new TakeRestConsumer() {
-                    @Override
-                    public void accept(Throwable e) throws Exception {
-                        super.accept(e);
-                        onRetrofitCallback.onFailure(error);
-                    }
-                });
+                               @Override
+                               public void accept(MovieBasic movieBasic) throws Exception {
+                                   onRetrofitCallback.onResponse(movieBasic);
+                               }
+                           },
+                        new TakeRestConsumer() {
+                            @Override
+                            public void accept(Throwable e) throws Exception {
+                                super.accept(e);
+                                onRetrofitCallback.onFailure(error);
+                            }
+                        });
     }
 
     /**
@@ -202,7 +203,6 @@ public class RetrofitManager {
      * @param year  the year of current date
      * @param month the month of current date
      * @param day   the day of current date
-     *
      */
     public Disposable getGankDaily(int year, int month, int day, final OnRetrofitCallback onRetrofitCallback) {
         return gankAPI.getDaily(year, month, day)
@@ -271,11 +271,10 @@ public class RetrofitManager {
     /**
      * 获取单个shot数据
      *
-     * @param id  The shots's id
-     *
+     * @param id The shots's id
      */
-    public Disposable getShot(int id,final OnRetrofitCallback onRetrofitCallback) {
-        return dribbbleAPI.getShotById(id,C.TOKEN)
+    public Disposable getShot(int id, final OnRetrofitCallback onRetrofitCallback) {
+        return dribbbleAPI.getShotById(id, C.TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Shot>() {
@@ -295,11 +294,10 @@ public class RetrofitManager {
     /**
      * 获取shot评论list
      *
-     * @param id shotid
-     *
-     * */
-    public Disposable getComments(int id,final OnRetrofitCallback onRetrofitCallback){
-        return dribbbleAPI.getComments(id,C.TOKEN)
+     * @param id shotId
+     */
+    public Disposable getComments(int id, final OnRetrofitCallback onRetrofitCallback) {
+        return dribbbleAPI.getComments(id, C.TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Comments>>() {
@@ -320,10 +318,9 @@ public class RetrofitManager {
      * 获取user信息
      *
      * @param id 用户id
-     *
-     * */
-    public Disposable getUser(int id,final OnRetrofitCallback onRetrofitCallback){
-        return dribbbleAPI.getUser(id,C.TOKEN)
+     */
+    public Disposable getUser(int id, final OnRetrofitCallback onRetrofitCallback) {
+        return dribbbleAPI.getUser(id, C.TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<User>() {
@@ -342,11 +339,11 @@ public class RetrofitManager {
 
     /**
      * 获取user的shots信息
-     * @param id   user id
      *
-     * */
-    public Disposable getUserShots(int id,final OnRetrofitCallback onRetrofitCallback){
-        return dribbbleAPI.getUserShots(id,C.TOKEN)
+     * @param id user id
+     */
+    public Disposable getUserShots(int id, final OnRetrofitCallback onRetrofitCallback) {
+        return dribbbleAPI.getUserShots(id, C.TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Shot>>() {
@@ -366,11 +363,10 @@ public class RetrofitManager {
     /**
      * 获取user的projects信息
      *
-     * @param id   user id
-     *
-     * */
-    public Disposable getUserProjects(int id,final OnRetrofitCallback onRetrofitCallback){
-        return dribbbleAPI.getUserProjects(id,C.TOKEN)
+     * @param id user id
+     */
+    public Disposable getUserProjects(int id, final OnRetrofitCallback onRetrofitCallback) {
+        return dribbbleAPI.getUserProjects(id, C.TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Project>>() {

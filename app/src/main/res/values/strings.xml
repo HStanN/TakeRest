@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">轻松时刻</string>
 
+    <string name="bugly_app_id">32cfe6f092</string>
+
     <string name="empty_view_hint">暂无数据</string>
     <string name="error_view_hint">出错啦！</string>
     <string name="no_network_view_hint">网络无连接</string>
@@ -27,7 +29,8 @@
     <string name="error_servicenotwork">服务器无法访问</string>
     
     <string name="error_location">定位失败</string>
-    
+
+    <string name="calendar">选择日期</string>
     <string name="about">关于</string>
     <string name="share_app">分享app</string>
     <string name="open_source">项目中用到的开源库</string>

@@ -36,6 +36,7 @@ public class MainActivity extends BaseActivity {
     private MeiziFragment meiziFragment;
     private ShotsFragment shotsFragment;
     private Toolbar mToolbar;
+    private MenuItem mCalendar;
     private String[] titles = {"正在热映","每日干货","养眼妹纸","dribbble"};
     @Override
     protected void setView() {
@@ -60,18 +61,22 @@ public class MainActivity extends BaseActivity {
                     case R.id.tab_movie:
                         mToolbar.setTitle(titles[0]);
                         showFragment(movieFragment,0);
+                        showHideCalendarMenu(false);
                     break;
                     case R.id.tab_developer:
                         mToolbar.setTitle(titles[1]);
                         showFragment(dailyFragment,1);
+                        showHideCalendarMenu(true);
                         break;
                     case R.id.tab_girl:
                         mToolbar.setTitle(titles[2]);
                         showFragment(meiziFragment,2);
+                        showHideCalendarMenu(false);
                         break;
                     default:
                         mToolbar.setTitle(titles[3]);
                         showFragment(shotsFragment,3);
+                        showHideCalendarMenu(false);
                         break;
                 }
             }
@@ -112,6 +117,12 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    private void showHideCalendarMenu(boolean b) {
+        if (mCalendar != null){
+            mCalendar.setVisible(b);
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -127,6 +138,9 @@ public class MainActivity extends BaseActivity {
                 action_share.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(Intent.createChooser(action_share, getString(R.string.share_app)));
                 break;
+            case R.id.action_calendar:
+                //TODO:打开日历
+                break;
             default:
                 break;
         }
@@ -136,6 +150,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        mCalendar = menu.findItem(R.id.action_calendar);
         return super.onCreateOptionsMenu(menu);
     }
 

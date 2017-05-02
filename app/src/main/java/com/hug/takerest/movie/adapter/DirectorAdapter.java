@@ -73,8 +73,17 @@ public class DirectorAdapter extends RecyclerView.Adapter<DirectorAdapter.ItemVi
             }else{
             }
         }else if(type == NORMAL){
-            Uri director_avator = Uri.parse(directorsBean.getAvatars().getMedium());
-            holder.avator.setImageURI(director_avator);
+            if (directorsBean.getAvatars() != null && directorsBean.getAvatars().getMedium() != null){
+                Uri director_avator = Uri.parse(directorsBean.getAvatars().getMedium());
+                holder.avator.setImageURI(director_avator);
+            }else if (directorsBean.getAvatars() != null && directorsBean.getAvatars().getSmall() != null){
+                Uri director_avator = Uri.parse(directorsBean.getAvatars().getSmall());
+                holder.avator.setImageURI(director_avator);
+            }else if (directorsBean.getAvatars() != null && directorsBean.getAvatars().getLarge() != null){
+                Uri director_avator = Uri.parse(directorsBean.getAvatars().getLarge());
+                holder.avator.setImageURI(director_avator);
+            }else{
+            }
         }
             if (position == 0){
                 holder.type.setText("导演");

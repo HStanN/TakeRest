@@ -166,6 +166,8 @@ public class OnShownMovieFragment extends BaseFragment implements OnShownMovieCo
                 presenter = new OnShownMoviePresenter(this, aMapLocation.getCity());
                 presenter.start();
             } else {
+                presenter = new OnShownMoviePresenter(this,"杭州");
+                presenter.start();
                 ToastUtil.makeTextShort(getActivity(), getString(R.string.error_location) + " code:" + aMapLocation.getErrorCode()
                         + " msg:" + aMapLocation.getErrorInfo());
             }

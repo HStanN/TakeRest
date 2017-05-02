@@ -16,7 +16,6 @@ public class GankDailyContract {
     }
 
     public interface Presenter extends BasePresenter {
-        void refresh();
         void start(int year,int month,int day);
     }
 }

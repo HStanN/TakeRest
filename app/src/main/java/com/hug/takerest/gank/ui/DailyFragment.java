@@ -74,6 +74,12 @@ public class DailyFragment extends BaseFragment implements GankDailyContract.Vie
         });
     }
 
+    public void getGankByDate(int year,int month,int day){
+        if (presenter != null){
+            presenter.start(year, month, day);
+        }
+    }
+
     @Override
     public void onSuccess(GankDaily gankDaily) {
         if (gankDaily != null &&gankDaily.getCategory().size() > 0) {

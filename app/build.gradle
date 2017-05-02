@@ -19,7 +19,10 @@ android {
         versionName "V.1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         renderscriptTargetApi 19
-        renderscriptSupportModeEnabled true    // Enable RS support
+        renderscriptSupportModeEnabled true
+        ndk {
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
     buildTypes {
         release {
@@ -72,4 +75,8 @@ dependencies {
     //photodraweeview
     compile 'me.relex:photodraweeview:1.1.2'
     compile 'com.amap.api:location:latest.integration'
+    //tencent bugly
+    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+
 }

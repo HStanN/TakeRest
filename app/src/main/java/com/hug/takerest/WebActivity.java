@@ -6,8 +6,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.JsPromptResult;
-import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -16,7 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.hug.takerest.base.BaseActivity;
-import com.orhanobut.logger.Logger;
 
 public class WebActivity extends BaseActivity {
     private ProgressBar progressbar;
@@ -78,18 +75,17 @@ public class WebActivity extends BaseActivity {
         webview.setSaveEnabled(false);
         webview.requestFocus();
 
-        settings.setSupportZoom(false);
-        settings.setBuiltInZoomControls(false);
+        settings.setBuiltInZoomControls(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
+        settings.setDisplayZoomControls(false);
         webview.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
             }
-
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (url.startsWith("http")) {

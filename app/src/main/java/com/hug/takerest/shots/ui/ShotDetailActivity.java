@@ -78,7 +78,7 @@ public class ShotDetailActivity extends BaseActivity implements ShotContract.Vie
         mPresenter.start();
     }
 
-    private void initUserInfo(Shot shot) {
+    private void initUserInfo(final Shot shot) {
         getToolbar().setTitle(shot.getTitle());
         mAvator.setImageURI(shot.getUser().getAvatar_url());
         url = (shot.getImages().getHidpi() == null) ? shot.getImages().getNormal() : shot.getImages().getHidpi();
@@ -107,6 +107,20 @@ public class ShotDetailActivity extends BaseActivity implements ShotContract.Vie
             getWindow().setSharedElementReturnTransition(DraweeTransition.createTransitionSet(
                     ScalingUtils.ScaleType.CENTER_CROP, ScalingUtils.ScaleType.CENTER_CROP));
         }
+        mAvator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShotDetailActivity.this,UserActivity.class);
+                intent.putExtra("id",shot.getUser().getId());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    ActivityOptions options = ActivityOptions
+                            .makeSceneTransitionAnimation(ShotDetailActivity.this, mAvator, "avator");
+                    startActivity(intent, options.toBundle());
+                }else {
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void initRecyclerView() {
@@ -119,20 +133,6 @@ public class ShotDetailActivity extends BaseActivity implements ShotContract.Vie
     @Override
     protected void bind() {
         super.bind();
-        mAvator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ShotDetailActivity.this,UserActivity.class);
-                intent.putExtra("id",shotId);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-                    ActivityOptions options = ActivityOptions
-                            .makeSceneTransitionAnimation(ShotDetailActivity.this, mAvator, "avator");
-                    startActivity(intent, options.toBundle());
-                }else {
-                    startActivity(intent);
-                }
-            }
-        });
         mImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

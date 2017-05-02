@@ -61,7 +61,6 @@ public class MovieBasicActivity extends BaseActivity implements MovieBasicContra
     Button mBuyTicket;
     @BindView(R.id.share_friends)
     Button mShare;
-    CollapsingToolbarLayout collapsingToolbarLayout;
     private FlowLayoutManager flowLayoutManager;
     private static final String ID = "id";
     private static final String URL = "url";
@@ -77,7 +76,6 @@ public class MovieBasicActivity extends BaseActivity implements MovieBasicContra
     protected void setView() {
         super.setView();
         setContentView(R.layout.activity_movie_basic);
-        StatusBarUtil.setTranslucentForCoordinatorLayout(this, 50);
     }
 
     @Override
@@ -113,12 +111,6 @@ public class MovieBasicActivity extends BaseActivity implements MovieBasicContra
                 }
             }
         });
-        mShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO:share
-            }
-        });
     }
 
     @Override
@@ -127,7 +119,7 @@ public class MovieBasicActivity extends BaseActivity implements MovieBasicContra
     }
 
     @Override
-    public void onSuccess(MovieBasic movieBasic) {
+    public void onSuccess(final MovieBasic movieBasic) {
         String url = movieBasic.getImages().getLarge();
         String des = movieBasic.getCountries().get(0);
         String date = movieBasic.getYear();
@@ -173,6 +165,17 @@ public class MovieBasicActivity extends BaseActivity implements MovieBasicContra
                 Intent intent = new Intent(MovieBasicActivity.this,WebActivity.class);
                 intent.putExtra(URL,list.get(position).getAlt());
                 startActivity(intent);
+            }
+        });
+        mShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent action_share = new Intent(Intent.ACTION_SEND);
+                action_share.setType("text/plain");
+                action_share.putExtra(Intent.EXTRA_SUBJECT, movieBasic.getTitle());
+                action_share.putExtra(Intent.EXTRA_TEXT, movieBasic.getTitle()+movieBasic.getMobile_url());
+                action_share.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(Intent.createChooser(action_share, movieBasic.getTitle()));
             }
         });
     }

@@ -16,6 +16,8 @@ import com.hug.takerest.WebActivity;
 import com.hug.takerest.movie.model.Director;
 import com.hug.takerest.movie.model.Movie;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,8 @@ import java.util.List;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ItemViewHolder> {
     private List<?> list;
     private Context context;
+    private String DIRECTOR = "导演：";
+    private String CASTS = "主演：";
 
     public interface OnItemClickLitener {
         void onItemClick(View view, int position);
@@ -69,33 +73,33 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ItemViewHold
             holder.collect.setText(movie.getCollect_count() + "人看过");
             holder.orig_title.setText(movie.getOriginal_title());
             holder.rating.setText(movie.getRating().getAverage() + "");
-            StringBuilder mtype = new StringBuilder("");
+            StringBuilder mType = new StringBuilder("");
             for (int i = 0; i < movie.getGenres().size(); i++) {
                 if (i < movie.getGenres().size() - 1) {
                     StringBuilder str = new StringBuilder(movie.getGenres().get(i) + "、");
-                    mtype.append(str);
+                    mType.append(str);
                 } else {
-                    mtype.append(movie.getGenres().get(i));
+                    mType.append(movie.getGenres().get(i));
                 }
             }
-            holder.type.setText(mtype);
-            holder.root.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
-            holder.root.setHasFixedSize(true);
-            final List<Director> list = new ArrayList<>();
-            list.addAll(movie.getDirectors());
-            list.addAll(movie.getCasts());
-            DirectorAdapter adapter = new DirectorAdapter(context,DirectorAdapter.SMALL,list);
-            holder.root.setAdapter(adapter);
-            adapter.setOnItemClickLitener(new DirectorAdapter.OnItemClickLitener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    String url = list.get(position).getAlt();
-                    Intent intent = new Intent(context, WebActivity.class);
-                    intent.putExtra("url",url);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
+            holder.type.setText(mType);
+            if (movie.getDirectors() != null && movie.getDirectors().size() > 0){
+                StringBuilder d = new StringBuilder(DIRECTOR);
+                d.append(movie.getDirectors().get(0).getName());
+                holder.director.setText(d);
+            }
+            if (movie.getCasts() != null && movie.getCasts().size() > 0){
+                StringBuilder c = new StringBuilder(CASTS);
+                int count = (movie.getCasts().size() > 2) ? 2 : movie.getCasts().size();
+                for (int i = 0; i < count ; i ++){
+                    if (i  < count - 1){
+                        c.append(movie.getCasts().get(i).getName() + "/");
+                    }else{
+                        c.append(movie.getCasts().get(i).getName());
+                    }
                 }
-            });
+                holder.starring.setText(c);
+            }
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -113,9 +117,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ItemViewHold
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView title, orig_title, rating, type, collect;
+        private TextView title, orig_title, rating, type, collect,director,starring;
         private SimpleDraweeView images;
-        private RecyclerView root;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -126,7 +129,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ItemViewHold
                 type = (TextView) itemView.findViewById(R.id.movie_type);
                 images = (SimpleDraweeView) itemView.findViewById(R.id.image);
                 collect = (TextView) itemView.findViewById(R.id.collect_number);
-                root = (RecyclerView) itemView.findViewById(R.id.director_or_actor_list);
+                director = (TextView) itemView.findViewById(R.id.director_name);
+                starring = (TextView) itemView.findViewById(R.id.starring);
             }
         }
     }

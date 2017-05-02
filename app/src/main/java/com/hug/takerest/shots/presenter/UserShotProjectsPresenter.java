@@ -50,7 +50,7 @@ public class UserShotProjectsPresenter implements UserShotProjectsContract.Prese
     @Override
     public void getProjects(int id) {
         mView.showProgress();
-        retrofit.getUserProjects(id, new RetrofitManager.OnRetrofitCallback<List<Project>>() {
+        disposable = retrofit.getUserProjects(id, new RetrofitManager.OnRetrofitCallback<List<Project>>() {
             @Override
             public void onResponse(List<Project> response) {
                 mView.hideProgress();
@@ -70,9 +70,6 @@ public class UserShotProjectsPresenter implements UserShotProjectsContract.Prese
 
     @Override
     public void start() {
-        if (disposable != null && !disposable.isDisposed()){
-            disposable.dispose();
-        }
     }
 
     @Override

@@ -24,11 +24,6 @@ public class GankDailyPresenter implements GankDailyContract.Presenter{
     }
 
     @Override
-    public void refresh() {
-
-    }
-
-    @Override
     public void start(int year, int month, int day) {
         mView.showProgress();
         disposable = retrofit.getGankDaily(year, month, day, new RetrofitManager.OnRetrofitCallback<GankDaily>() {

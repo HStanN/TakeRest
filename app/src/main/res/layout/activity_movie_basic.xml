@@ -9,7 +9,6 @@
 
 
         <android.support.design.widget.CoordinatorLayout
-            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <android.support.design.widget.AppBarLayout
@@ -109,10 +108,10 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <RelativeLayout
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:nestedScrollingEnabled="false"
                     android:descendantFocusability="blocksDescendants"
                     android:padding="10dp">
 
@@ -120,7 +119,6 @@
                         android:id="@+id/original_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="原名：Skull Island"
                         android:textColor="@color/textPrimary"
                         android:textSize="20sp" />
 

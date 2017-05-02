@@ -7,6 +7,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.hug.takerest.http.RetrofitManager;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
+import com.tencent.bugly.Bugly;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class GoApp extends Application {
     public void onCreate() {
         super.onCreate();
         retrofit = RetrofitManager.newInstance();
+        Bugly.init(getApplicationContext(), getString(R.string.bugly_app_id), false);
         Fresco.initialize(this);
         Logger.init(TAG)                 // default PRETTYLOGGER or use just init()
                 .methodCount(3)                 // default 2
