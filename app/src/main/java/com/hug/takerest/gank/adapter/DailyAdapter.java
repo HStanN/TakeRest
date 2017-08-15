@@ -47,10 +47,23 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.ItemViewHold
         this.category = category;
     }
 
+    public void setData(GankSortData gankSort, List<String> category){
+        this.gankSort = gankSort;
+        this.category = category;
+        notifyDataSetChanged();
+    }
+
     public void setHeaderView(View headerView) {
         mHeaderView = headerView;
         notifyItemInserted(0);
     }
+
+    public void removeHeaderView(){
+        if (mHeaderView != null){
+            notifyItemRemoved(0);
+        }
+    }
+
     public View getHeaderView() {
         return mHeaderView;
     }

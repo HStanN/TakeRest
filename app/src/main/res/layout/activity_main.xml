@@ -11,6 +11,7 @@
             android:layout_height="match_parent"
             ></FrameLayout>
 
+
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
         android:layout_gravity="bottom"
@@ -23,4 +24,18 @@
         app:bb_activeTabColor="@color/white"
         app:bb_showShadow="true"
         app:bb_behavior="shy"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/calendar_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        android:src="@drawable/ic_calendar"
+        app:useCompatPadding="true"
+        android:layout_gravity="bottom|right"
+        app:layout_anchor="@id/bottomBar"
+        app:layout_anchorGravity="top|end"
+        app:layout_behavior="com.hug.takerest.util.FABBehavior"
+        app:elevation="6dp"
+        app:pressedTranslationZ="7dp"
+        />
 </android.support.design.widget.CoordinatorLayout>

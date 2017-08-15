@@ -2,11 +2,13 @@ package com.hug.takerest;
 
 import android.content.Intent;
 import android.support.annotation.IdRes;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import com.hug.takerest.gank.ui.MeiziFragment;
 import com.hug.takerest.movie.ui.OnShownMovieFragment;
 import com.hug.takerest.shots.ui.ShotsFragment;
 import com.hug.takerest.util.FragmentUtils;
+import com.hug.takerest.widget.CalendarDialog;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
@@ -30,14 +33,19 @@ public class MainActivity extends BaseActivity {
     FrameLayout container;
     @BindView(R.id.bottomBar)
     BottomBar mBottomBar;
+    @BindView(R.id.calendar_fab)
+    FloatingActionButton mFab;
+
     private Fragment mCurrentFragment;
     private OnShownMovieFragment movieFragment;
     private DailyFragment dailyFragment;
     private MeiziFragment meiziFragment;
     private ShotsFragment shotsFragment;
     private Toolbar mToolbar;
-    private MenuItem mCalendar;
-    private String[] titles = {"正在热映","每日干货","养眼妹纸","dribbble"};
+    private CalendarDialog mCalendar;
+
+    private String[] titles = {"正在热映", "每日干货", "养眼妹纸", "dribbble"};
+
     @Override
     protected void setView() {
         super.setView();
@@ -54,29 +62,47 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void bind() {
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCalendar == null){
+                    mCalendar = new CalendarDialog(MainActivity.this, new CalendarDialog.DatePickerListener() {
+                        @Override
+                        public void onDateSet(int year, int month, int day) {
+                            if (dailyFragment != null){
+                                dailyFragment.getGankByDate(year,month,day);
+                            }
+                        }
+                    });
+                }
+                    mCalendar.show();
+            }
+        });
         mBottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
-                switch (tabId){
+                switch (tabId) {
                     case R.id.tab_movie:
                         mToolbar.setTitle(titles[0]);
-                        showFragment(movieFragment,0);
-                        showHideCalendarMenu(false);
-                    break;
+                        showFragment(movieFragment, 0);
+                        mFab.hide();
+                        break;
                     case R.id.tab_developer:
                         mToolbar.setTitle(titles[1]);
-                        showFragment(dailyFragment,1);
-                        showHideCalendarMenu(true);
+                        showFragment(dailyFragment, 1);
+                        mFab.show();
                         break;
                     case R.id.tab_girl:
                         mToolbar.setTitle(titles[2]);
-                        showFragment(meiziFragment,2);
-                        showHideCalendarMenu(false);
+                        showFragment(meiziFragment, 2);
+                        mFab.hide();
+                        break;
+                    case R.id.tab_dribbble:
+                        mToolbar.setTitle(titles[3]);
+                        showFragment(shotsFragment, 3);
+                        mFab.hide();
                         break;
                     default:
-                        mToolbar.setTitle(titles[3]);
-                        showFragment(shotsFragment,3);
-                        showHideCalendarMenu(false);
                         break;
                 }
             }
@@ -84,13 +110,14 @@ public class MainActivity extends BaseActivity {
         mBottomBar.selectTabAtPosition(0);
     }
 
-    private void showFragment(Fragment fragment, int position){
-        if (fragment == null){
-            switch (position){
+
+    private void showFragment(Fragment fragment, int position) {
+        if (fragment == null) {
+            switch (position) {
                 case 0:
                     movieFragment = new OnShownMovieFragment();
                     fragment = movieFragment;
-                break;
+                    break;
                 case 1:
                     dailyFragment = new DailyFragment();
                     fragment = dailyFragment;
@@ -106,28 +133,22 @@ public class MainActivity extends BaseActivity {
                 default:
                     break;
             }
-            if (mCurrentFragment != null){
+            if (mCurrentFragment != null) {
                 FragmentUtils.hideFragment(mCurrentFragment);
             }
-            FragmentUtils.addFragment(getSupportFragmentManager(),fragment, R.id.fragment_container,false);
+            FragmentUtils.addFragment(getSupportFragmentManager(), fragment, R.id.fragment_container, false);
             mCurrentFragment = fragment;
-        }else {
-            FragmentUtils.hideShowFragment(mCurrentFragment,fragment);
+        } else {
+            FragmentUtils.hideShowFragment(mCurrentFragment, fragment);
             mCurrentFragment = fragment;
-        }
-    }
-
-    private void showHideCalendarMenu(boolean b) {
-        if (mCalendar != null){
-            mCalendar.setVisible(b);
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_about:
-                Intent intent = new Intent(this,AboutActivity.class);
+                Intent intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
                 break;
             case R.id.action_share_app:
@@ -138,9 +159,6 @@ public class MainActivity extends BaseActivity {
                 action_share.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(Intent.createChooser(action_share, getString(R.string.share_app)));
                 break;
-            case R.id.action_calendar:
-                //TODO:打开日历
-                break;
             default:
                 break;
         }
@@ -150,8 +168,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        mCalendar = menu.findItem(R.id.action_calendar);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
@@ -167,7 +184,7 @@ public class MainActivity extends BaseActivity {
     private void exitBy2Click() {
         if (isExit == false) {
             isExit = true;
-            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
             Timer tExit = new Timer();
             tExit.schedule(new TimerTask() {
                 @Override

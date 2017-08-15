@@ -18,9 +18,8 @@
         barColorWhenSelected="@color/colorPrimary"
         badgeHidesWhenActive="true"
         title="妹子" />
-
     <tab
-        id="@+id/tab_book"
+        id="@+id/tab_dribbble"
         icon="@drawable/ic_dribbble"
         barColorWhenSelected="@color/colorPrimary"
         badgeHidesWhenActive="true"

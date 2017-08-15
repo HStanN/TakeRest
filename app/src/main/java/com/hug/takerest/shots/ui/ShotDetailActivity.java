@@ -28,6 +28,7 @@ import com.hug.takerest.shots.presenter.ShotContract;
 import com.hug.takerest.shots.presenter.ShotPresenter;
 import com.hug.takerest.util.ToastUtil;
 
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -100,7 +101,7 @@ public class ShotDetailActivity extends BaseActivity implements ShotContract.Vie
         } else {
             mUserBio.setText(getString(R.string.no_description));
         }
-        mComments.setText("Comments(" + shot.getComments_count() + ")");
+        mComments.setText(MessageFormat.format("Comments({0})",shot.getComments_count()));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setSharedElementEnterTransition(DraweeTransition.createTransitionSet(
                     ScalingUtils.ScaleType.CENTER_CROP, ScalingUtils.ScaleType.CENTER_CROP));
@@ -159,7 +160,6 @@ public class ShotDetailActivity extends BaseActivity implements ShotContract.Vie
 
             @Override
             public void onFailure(String e) {
-
             }
         });
     }

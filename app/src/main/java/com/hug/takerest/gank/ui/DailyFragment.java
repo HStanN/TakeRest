@@ -2,6 +2,7 @@ package com.hug.takerest.gank.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ public class DailyFragment extends BaseFragment implements GankDailyContract.Vie
     RecyclerView mRecyclerView;
     @BindView(R.id.flowlayout)
     FlowLayout flowlayout;
+
 
     Calendar calendar;
     GankDailyPresenter presenter;
@@ -83,12 +85,20 @@ public class DailyFragment extends BaseFragment implements GankDailyContract.Vie
     @Override
     public void onSuccess(GankDaily gankDaily) {
         if (gankDaily != null &&gankDaily.getCategory().size() > 0) {
-            mAdapter = new DailyAdapter(getActivity(), gankDaily.getResults(), gankDaily.getCategory());
-            mRecyclerView.setAdapter(mAdapter);
+            if (mAdapter != null && mAdapter.getHeaderView() != null){
+                mAdapter.removeHeaderView();
+            }
+            if (mAdapter == null){
+                mAdapter = new DailyAdapter(getActivity(), gankDaily.getResults(), gankDaily.getCategory());
+                mRecyclerView.setAdapter(mAdapter);
+            }else{
+                mRecyclerView.getRecycledViewPool().clear();
+                mRecyclerView.removeAllViews();
+                mAdapter.setData(gankDaily.getResults(),gankDaily.getCategory());
+            }
             if (gankDaily.getResults().getVideo() != null){
                 final String sVideoUrl = gankDaily.getResults().getVideo().get(0).getUrl();
                 String video_title = gankDaily.getResults().getVideo().get(0).getDesc();
-
                 View header = LayoutInflater.from(getActivity()).inflate(R.layout.daily_header_view, mRecyclerView, false);
                 TextView videoTitle = (TextView) header.findViewById(R.id.video_title);
                 ImageView play = (ImageView) header.findViewById(R.id.start_play);
@@ -104,16 +114,16 @@ public class DailyFragment extends BaseFragment implements GankDailyContract.Vie
                 });
                 videoTitle.setText(TODAY_TIPS + video_title);
                 mAdapter.setHeaderView(header);
-
             }
         }else{
             PRE_DATE--;
             String date = DateUtil.getPreviewsDay(calendar,PRE_DATE);
-            day = DateUtil.getDayFromString(date);
+            day   = DateUtil.getDayFromString(date);
             month = DateUtil.getMonthFromString(date);
-            year = DateUtil.getYearFromString(date);
+            year  = DateUtil.getYearFromString(date);
             presenter.start(year,month,day);
         }
+        mRecyclerView.scrollToPosition(0);
 
     }
 

@@ -74,7 +74,6 @@ public class WebActivity extends BaseActivity {
         settings.setJavaScriptEnabled(true);
         webview.setSaveEnabled(false);
         webview.requestFocus();
-
         settings.setBuiltInZoomControls(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
@@ -105,7 +104,6 @@ public class WebActivity extends BaseActivity {
                 if (progress < 100 && progressbar.getVisibility() == ProgressBar.GONE) {
                     progressbar.setVisibility(View.VISIBLE);
                 }
-
                 progressbar.setProgress(progress);
                 if (progress == 100) {
                     progressbar.setVisibility(View.GONE);

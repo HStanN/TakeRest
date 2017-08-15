@@ -137,7 +137,6 @@ public class PhotoViewActivity extends BaseActivity {
                     public void onNext(Uri value) {
                         if (value != null) {
                             ToastUtil.makeTextShort(PhotoViewActivity.this, getString(R.string.save_success) + value.toString());
-
                         }
                     }
 
