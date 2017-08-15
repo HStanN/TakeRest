@@ -1,6 +1,23 @@
 # TakeRest
-an demo Application.
-
+Designed by MVP
+## Library
+[RxJava](https://github.com/ReactiveX/RxJava)   
+[Gson](https://github.com/google/gson)  
+[Retrofit](https://github.com/square/retrofit)  
+[ButterKnife](https://github.com/JakeWharton/butterknife)   
+[Logger](https://github.com/orhanobut/logger)  
+[Fresco](https://github.com/facebook/fresco)  
+[BottomBar](https://github.com/roughike/BottomBar)  
+[RealTimeBlurView](https://github.com/mmin18/RealtimeBlurView)  
+[PhotoDraweeView](https://github.com/ongakuer/PhotoDraweeView)  
+## ScreenShots
+ ![s1](https://github.com/HStanN/TakeRest/blob/master/images/screenshot1.png)
+ ![s2(https://github.com/HStanN/TakeRest/blob/master/images/screenshot2.png)
+ ![s3](https://github.com/HStanN/TakeRest/blob/master/images/screenshot3.png)
+ ![s4](https://github.com/HStanN/TakeRest/blob/master/images/screenshot4.png)
+ ![s5](https://github.com/HStanN/TakeRest/blob/master/images/screenshot5.png)
+ ![s6](https://github.com/HStanN/TakeRest/blob/master/images/screenshot6.png)
+ 
 # License
 
 >  Copyright Hstan
