@@ -12,7 +12,7 @@ Designed by MVP
 [PhotoDraweeView](https://github.com/ongakuer/PhotoDraweeView)  
 ## ScreenShots
  ![s1](https://github.com/HStanN/TakeRest/blob/master/images/screenshot1.png)
- ![s2(https://github.com/HStanN/TakeRest/blob/master/images/screenshot2.png)
+ ![s2](https://github.com/HStanN/TakeRest/blob/master/images/screenshot2.png)
  ![s3](https://github.com/HStanN/TakeRest/blob/master/images/screenshot3.png)
  ![s4](https://github.com/HStanN/TakeRest/blob/master/images/screenshot4.png)
  ![s5](https://github.com/HStanN/TakeRest/blob/master/images/screenshot5.png)
